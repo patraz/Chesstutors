@@ -1,0 +1,8 @@
+{% load crispy_forms_tags %}
+<div class="justify-content-start my-5" id="img_div"style="background-color: #f8f9fa;">
+    <form  enctype="multipart/form-data" method="POST" action="{% url 'upload_photo' %}" hx-swap="outerHTML" hx-target="#img_div">
+        {% csrf_token %}
+        {{form|crispy}}
+        <button class="btn btn-primary btn-sm m-1 " type='submit' >zapisz</button>
+    </form>
+</div>

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}Announcements | {% endblock %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class='row mx-auto w-50'>
+    <div class="col">
+        <h1>Dodaj ogłoszenie</h1>
+            
+            {% include "announcements/partials/forms.html" %}
+        
+    </div>
+    
+</div>
+
+
+
+
+{% endblock %}

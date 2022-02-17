@@ -1,0 +1,6 @@
+<div class="p-4" id="about_me"style="background-color: #f8f9fa;">
+    <p class="font-italic mb-1"> {{ user.description }}</p>
+    <p  hx-get="{% url 'edit_des' %}" style="cursor:pointer;" class="badge bg-success float-end " hx-target="#about_me" hx-swap="outerHTML">
+      Edytuj opis
+    </p>
+  </div>

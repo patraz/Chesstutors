@@ -1,0 +1,31 @@
+
+    <div id="avs">
+        {% if obj.avs %}
+        <div class="card-text">
+            {% for av in obj.avs.all %} 
+            <div class="av_amount">
+                <p hx-post="{% url 'announcements:av_delete' id=obj.id av_id=av.id %}" style="cursor:pointer;" class="badge bg-danger float-end " hx-target="#avs" hx-swap="outerHTML">
+                    x
+                  </p>
+                  <h6 class="">{{ av.day }} </h6>
+                  <p>od: {{ av.av_from }} do: {{ av.av_to }}</p>
+                  <hr class="bg-success border-2 border-top border-success">
+            </div>
+            {% endfor %}
+
+        </div>
+        
+        {% endif %}   
+        {% if obj.avs.all.count < 7  %}
+        <div id="btn_div" class="mb-3">
+            <a class="btn btn-success" id="add_btn"  hx-put='{% url "announcements:hx_av" id=obj.id %}' hx-swap='outerHTML' hx-target='#formdiv'>
+                dodaj dostępność
+            </a>
+        </div>
+        <div id="formdiv"></div>
+        {% else%}
+        <p>Więcej niż 7 dodać nie możesz...</p>
+        {% endif %}
+
+    </div>
+

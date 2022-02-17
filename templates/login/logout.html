@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Logout| {% endblock %}
+
+{% block content %}
+
+<div class="container col-xl-5 col-xxl-8 px-4 py-5">
+        <form action="" method="POST">
+            {% csrf_token %}
+            <button class="w-100 btn btn-lg btn-primary" type="submit">logout</button>
+                  <hr class="my-4">
+        </form>
+</div>
+
+
+{% endblock %}

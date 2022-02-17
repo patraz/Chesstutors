@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Profile | {% endblock %}
+{% block content %}
+
+
+
+
+<section class="h-100 gradient-custom-2">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col col-lg-9 col-xl-7">
+          <div class="card" x-data="{ qty: {{ qs_qty }} }">
+            <div class="rounded-top text-white d-flex flex-row" style="background-image: radial-gradient(circle at 19.01% 64.45%, #acbf27 0, #97bd27 12.5%, #7db722 25%, #5bad1a 37.5%, #269f0d 50%, #009005 62.5%, #00850d 75%, #007d1a 87.5%, #007928 100%); height:200px;">
+              <div class="ms-4 mt-5 d-flex flex-column" style="width: 150px;">
+                <img src="{% if  user.profile_picture %} {{user.profile_picture.url}} {% else %} {% static 'default.jpg' %} {% endif %}" alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2" style="width: 150px; z-index: 1">
+                <button type="button" class="btn btn-light btn-sm" data-mdb-ripple-color="dark" hx-target="#img_div" style="z-index: 1;" hx-swap="outerHTML" hx-get="{% url 'upload_photo'%}">
+                  zmień profilówkę
+                </button>
+                
+              </div>
+              <div class="ms-3" style="margin-top: 130px;">
+                <h3>{{ user.user }}</h3>
+              </div>
+            </div>
+            
+            <div class="p-4 text-black" style="background-color: #f8f9fa;">
+              <div id="img_div"></div>
+              <div class="d-flex justify-content-end text-center py-1">
+                <div class="p-3">
+                  <p class="mb-1 h5" x-text="qty"></p>
+                  <p class="small text-muted mb-0">ogłoszenia</p>
+                </div>
+                <a  href="{% url 'announcements:create' %}" class="btn btn-outline-dark m-4" >
+                    Dodaj ogłoszenie
+                </a>
+                <!-- <button type="button" class="btn btn-outline-dark m-1" >
+                    cośtam
+                </button> -->
+              </div>
+            </div>
+            <div class="card-body p-4 text-black">
+              <div class="mb-5">
+                <p class="lead fw-normal mb-1">O mnie</p>
+                {% include 'about_me.html' %}
+              </div>
+              <div class="d-flex justify-content-between align-items-center mb-4">
+                <p class="lead fw-normal mb-0">Twoje ogłoszenia</p>
+              </div>
+              {% for announcement in object_list %}
+                <div class="container-fluid" id='{{ announcement.get_id_str }}'>
+                    <div class="row">
+                      <div class="col-12">
+                          <ul class="list-group">
+                            <div class="m-2">
+                              <form action="{{ announcement.get_delete_url }}"  method="POST" hx-post="{{ announcement.get_delete_url }}" hx-target="#{{ announcement.get_id_str }}" hx-swap="outerHTML">
+                                {% csrf_token %}                             
+                                <button class="mx-1 btn btn-outline-danger float-end" @click="qty--" type='submit'>Usuń</button>
+                              </form>
+                              <form action="{{ announcement.get_update_url }}" method="GET">
+                                {% csrf_token %}                          
+                                <button class="btn btn-warning float-end" type='submit'>Edytuj</button>
+                              </form>
+  
+                            </div>
+                          <a href="{{ announcement.get_absolute_url }}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                              <div class="flex-column">
+                                  <h5>{{ announcement.title }} </h5>
+                              <p><small>{{ announcement.content|truncatewords:20 }}</small></p>
+                              <span class="badge bg-success badge-pill">{{ announcement.price }} {{announcement.currency}}/ 1h</span>
+                              <span class="badge bg-success badge-pill">{{ announcement.user }}</span>
+                              <span class="badge bg-success badge-pill">{{ announcement.timestamp }}</span>
+                              </div>
+                              
+                              <div class="image-parent">
+                                <img src="{{ announcement.get_announcement_picture }}" width="100"  class="img-thumbnail" alt="quixote">
+                              </div>
+                          </a>
+                        </div>
+                      </div>   
+                      </ul>
+                      
+                      <hr>  
+                </div>
+              
+            {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+
+
+{% endblock %}

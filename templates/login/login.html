@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Login | {% endblock %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+{% if not request.user.is_authenticated %}
+<div class="bg-success text-secondary px-4 py-5 text-center">
+        <div class="py-5">
+          <h1 class="display-5 fw-bold text-white">Logowanie</h1>
+          <div class="col-lg-6 mx-auto">
+            <p class="fs-5 mb-4 text-white">Umów się na korepetycje z najbardziej wykwalifikowanymi ekspertami z dziedziny szachów.</p>
+            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                <form action="" method="POST" class="text-white mx-auto col-4">
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                        <hr>
+                        <button class="w-20 btn btn-outline-light btn-lg px-4" type="submit">Log in</button>                  
+                </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+{% else %}
+<p>You are already logged in, do you like to <a href="{% url 'logout' %}">logout</a>?</p>
+{% endif %}
+
+{% endblock %}

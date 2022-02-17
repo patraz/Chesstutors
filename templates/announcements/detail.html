@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block title %}Announcements | {% endblock %}
+
+{% block content %}
+<style>
+.avatar {
+  border: 0.3rem solid rgba(#fff, 0.3);
+  margin-top: -6rem;
+  margin-bottom: 1rem;
+  max-width: 9rem;
+}
+</style>
+
+
+    <!-- card container -->
+    <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+        <h1 class="display-4">{{ obj.title }}</h1>
+    </div>
+    <div class="row">
+        <div class="col-sm-8 col-md-6 col-lg-2">
+            <div class="card-body text-center">
+                    <img src="{% if  author.profile_picture %} {{ author.profile_picture.url}} {% else %} {% static 'default.jpg' %} {% endif %}" alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2" style="width: 150px; z-index: 1">
+                    <h4 class="card-title">{{ author.user }}</h4>
+                    <h6 class="card-subtitle mb-2 text-muted">Autor ogłoszenia</h6>
+                    <p class="card-text text-break">{{ user.description }}</p>
+                    <a href="#" class="btn btn-success">umów się na korki</a>
+                    <a href="#" class="btn btn-outline-success my-1">napisz wiadomość</a>
+            </div>
+    </div>
+
+      <!-- card-1 -->
+      <div class="col bg-transparent">
+        <div class="card-body">
+          <i class="bi bi-display h1 text-warning"></i>
+          <h5 class="card-title mt-3">Opis ogłoszenia</h5>
+          <p class="card-text">
+            {{ obj.content }} 
+          </p>
+        </div>
+        <div class="card-body">
+            <i class="bi bi-display h1 text-warning"></i>
+            <h5 class="card-title mt-3">Cennik</h5>
+            <p class="card-text">
+              {{ obj.price }} {{ obj.currency }}
+            </p>
+          </div>
+          <div class="card-body">
+            <i class="bi bi-display h1 text-warning"></i>
+            <h5 class="card-title mt-3">Dostępność</h5>
+            <p class="card-text">
+                {% for av in obj.avs.all %} 
+                  <h6>{{ av.day }} </h6>
+                  <p>od: {{ av.av_from }} do: {{ av.av_to }}</p>
+                {% endfor %}
+            </p>
+          </div>
+      </div>
+    </div>
+
+  {% include 'form_comments.html' %}
+  <!-- <div class="container row">	
+    <form action="{% url 'announcements:detail' id=obj.id %}" method="POST" class="text-white mx-auto col-12">
+      {% csrf_token %}
+      <div class="text-dark">
+        <h3>Dodaj komentarz</h3>
+        {{ form|crispy }}
+        <button class="btn btn-success float-end m-3" type='submit'>Dodaj</button>
+      </div>
+    </form>
+  </div>
+    {% if obj.comments.all %}
+    <h1>Komentarze</h1>
+    {% for comment in obj.comments.all %}
+    <div class="container">
+      <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-2">
+                    <img src="{{ comment.get_com_author }}" class="img img-rounded img-fluid"/>
+                    <p class="text-secondary text-center">{{ comment.publish }}</p>
+                </div>
+                <div class="col-md-10">
+                    <p>
+                        <a class="float-right" href="#"><strong>{{ comment.user }}</strong></a>   
+                        <span class="float-end badge bg-success badge-pill">{{ comment.rating }} / <span class="bg-success badge-pill"> 5 </span></span>
+                  </p>
+                  <div>
+                    
+                    <p>{{ comment.content }}</p>
+                  </div>
+                    
+                </div>
+            </div>
+              
+                    </div>
+                </div>
+                
+    </div>
+    {% endfor %}
+
+
+
+    {% endif %} -->
+    
+{% endblock %}

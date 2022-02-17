@@ -1,0 +1,26 @@
+<div class="container" id="nav">
+    <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+      <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+        <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+        <span class="fs-4">ChessTutors <img src="https://d1nhio0ox7pgb.cloudfront.net/_img/o_collection_png/green_dark_grey/64x64/plain/chess_piece_bishop.png" alt="" height="40px"></span>
+      </a>
+
+      <ul class="nav nav-pills">
+        
+        {% if request.user.is_authenticated %}
+        <li class="nav-item"><a href="{% url 'announcements:list' %}" class="btn bg-success mx-1 text-white">Ogłoszenia</a></li>
+        <li class="nav-item"><a href="{% url 'profile' %}" class="btn bg-success mx-1 text-white">Twoje konto</a></li>
+        <form action="{% url 'logout' %}" method="POST">
+          {% csrf_token %}
+          <li class="nav-item"><button type="submit" class="btn btn-danger">Wyloguj</button></li>
+        </form>
+        
+        
+        {% else %}
+        <li class="nav-item"><a href="{% url 'signup' %}" class="btn bg-success mx-1 text-white ">Zarejestruj się</a></li>
+        <li class="nav-item"><a href="{% url 'login' %}" class="btn bg-success mx-1 text-white">Zaloguj się</a></li>
+        {% endif %}
+        
+      </ul>
+    </header>
+  </div>

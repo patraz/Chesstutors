@@ -1,0 +1,62 @@
+
+{% extends "base.html" %}
+{% load static %}
+{% block title %} Home | {% endblock %}
+
+{% block content %}
+
+    <div class=" px-4 py-5" id="hanging-icons">
+        <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+          <div class="col d-flex align-items-start">
+            <div class="icon-square bg-light text-dark flex-shrink-0 me-3">
+                <img src="https://www.e-korepetycje.net/images/svg/icon_step1.svg" alt="">
+              </div>
+            <div>
+              <h2>Załóż darmowe konto
+                </h2>
+              <p>Zajmie to tylko kilka minut!</p>
+              
+            </div>
+          </div>
+          <div class="col d-flex align-items-start">
+            <div class="icon-square bg-light text-dark flex-shrink-0 me-3">
+                <img src="https://www.e-korepetycje.net/images/svg/icon_step2.svg" alt="">
+              </div>
+            <div>
+              <h2>Dodaj ogłoszenie</h2>
+              <p>lub wyszukaj korepetytora</p>
+              
+            </div>
+          </div>
+          <div class="col d-flex align-items-start">
+            <div class="icon-square bg-light text-dark flex-shrink-0 me-3">
+                <img src="https://www.e-korepetycje.net/images/svg/icon_step3.svg" alt="">
+                
+              </div>
+            <div>
+              <h2>Zaplanuj swoją lekcję
+                </h2>
+              <p>lub umów się na wizytę</p>
+              
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <div class="bg-success text-secondary px-4 py-5 text-center">
+      <div class="py-5">
+        <h1 class="display-5 fw-bold text-white">Arcymistrz w zasięgu ręki!</h1>
+        <div class="col-lg-6 mx-auto">
+          <p class="fs-5 mb-4 text-white">Umów się na korepetycje z najbardziej wykwalifikowanymi ekspertami z dziedziny szachów.</p>
+          <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+            <!-- <button type="button" class="btn btn-outline-info btn-lg px-4 me-sm-3 fw-bold">Custom button</button> -->
+            <a type="button" href="{% if user.is_authenticated %}{% url 'announcements:list' %} {% else %} {% url 'signup' %} {% endif %}" class="btn btn-outline-light btn-lg px-4">{% if user.is_authenticated %} Przeglądaj ogłoszenia {% else %} Zarejestruj się {% endif %}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}
+
+
+
+
