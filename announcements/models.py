@@ -1,7 +1,5 @@
 from django.conf import settings
 from django.db import models
-from django.db.models.signals import pre_save
-from django.core.exceptions import ValidationError
 from django.urls import reverse
 from userprofile.models import Userprofile
 
