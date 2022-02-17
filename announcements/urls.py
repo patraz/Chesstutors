@@ -21,6 +21,4 @@ urlpatterns = [
     path('<int:id>/edit/', announcement_update_view, name = 'update'),
     path("<int:id>/create/add/", av_form, name='hx_av'),
     path("<int:id>/<int:av_id>/av/delete/", av_delete, name='av_delete'),
-    
-    # path('', announcement_delete_view)
-]
+    ]
