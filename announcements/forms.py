@@ -1,10 +1,6 @@
-
-from msilib.schema import Error
 from django import forms
 
-
 from .models import Announcement, Avaliability, Comment
-from django.core.exceptions import ValidationError
 
 
 
