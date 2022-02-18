@@ -1,6 +1,6 @@
 {% load crispy_forms_tags %}
 
-<form action="." method="POST"  hx-post='.' hx-swap='outerHTML'>
+<form action="." method="POST" {% if obj is None %} hx-post='.' hx-swap='outerHTML' {% endif %}>
     {{message}}
     {% csrf_token %}
     {{ form|crispy }}
@@ -11,25 +11,12 @@
         {% include 'announcements/availability.html' %}   
         
         </div>
-        <a class='btn btn-warning' href='{% url "announcements:detail" id=obj.id %}'>Przejdź do ogłoszenia</a>
+        
+        <a class='btn btn-warning m-2' href='{% url "announcements:detail" id=obj.id %}'>Przejdź do ogłoszenia</a>
+        <button type='submit' class='m-2 btn btn-primary'>zapisz zmiany</button>
     {% endif %}
     <hr>
     {% if btn != True %}
         <button type='submit' class="m-2 btn btn-success">Zapisz ogłoszenie aby dodać dostępność</button>
     {% endif %}
 </form>
-
-<!-- <script>
-    btn_div = document.getElementById('btn_div')
-    btn = document.getElementById('add_btn')
-
-    function check_avs_amount() {
-        console.log(document.getElementsByClassName('av_amount').length)
-        if (document.getElementsByClassName('av_amount').length === 6) {
-            btn.style.display = 'none'
-            
-        }
-    }
-
-    btn.addEventListener('click', check_avs_amount)
-</script> -->

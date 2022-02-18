@@ -25,7 +25,7 @@
                     <img src="{% if  author.profile_picture %} {{ author.profile_picture.url}} {% else %} {% static 'default.jpg' %} {% endif %}" alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2" style="width: 150px; z-index: 1">
                     <h4 class="card-title">{{ author.user }}</h4>
                     <h6 class="card-subtitle mb-2 text-muted">Autor ogłoszenia</h6>
-                    <p class="card-text text-break">{{ user.description }}</p>
+                    <p class="card-text text-break">{{ author.description }}</p>
                     <a href="#" class="btn btn-success">umów się na korki</a>
                     <a href="#" class="btn btn-outline-success my-1">napisz wiadomość</a>
             </div>
@@ -61,48 +61,6 @@
     </div>
 
   {% include 'form_comments.html' %}
-  <!-- <div class="container row">	
-    <form action="{% url 'announcements:detail' id=obj.id %}" method="POST" class="text-white mx-auto col-12">
-      {% csrf_token %}
-      <div class="text-dark">
-        <h3>Dodaj komentarz</h3>
-        {{ form|crispy }}
-        <button class="btn btn-success float-end m-3" type='submit'>Dodaj</button>
-      </div>
-    </form>
-  </div>
-    {% if obj.comments.all %}
-    <h1>Komentarze</h1>
-    {% for comment in obj.comments.all %}
-    <div class="container">
-      <div class="card">
-        <div class="card-body">
-            <div class="row">
-                <div class="col-md-2">
-                    <img src="{{ comment.get_com_author }}" class="img img-rounded img-fluid"/>
-                    <p class="text-secondary text-center">{{ comment.publish }}</p>
-                </div>
-                <div class="col-md-10">
-                    <p>
-                        <a class="float-right" href="#"><strong>{{ comment.user }}</strong></a>   
-                        <span class="float-end badge bg-success badge-pill">{{ comment.rating }} / <span class="bg-success badge-pill"> 5 </span></span>
-                  </p>
-                  <div>
-                    
-                    <p>{{ comment.content }}</p>
-                  </div>
-                    
-                </div>
-            </div>
-              
-                    </div>
-                </div>
-                
-    </div>
-    {% endfor %}
 
-
-
-    {% endif %} -->
     
 {% endblock %}

@@ -1,7 +1,7 @@
 {% load crispy_forms_tags %}
 <div id="form_com">
     <div  class="container row">	
-        <form  hx-post="{% url 'announcements:detail' id=obj.id %}" hx-target="#form_com" hx-swap="outerHTML" action="{% url 'announcements:detail' id=obj.id %}" method="POST" class="text-white mx-auto col-12">
+        <form  hx-post="{% url 'announcements:detail' id=obj.id %}" hx-target="#form_com" hx-swap="outerHTML" class="text-white mx-auto col-12">
           {% csrf_token %}
           <div class="text-dark">
             <h3>Dodaj komentarz</h3>
@@ -18,7 +18,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-2">
-                        <img src="{{ comment.get_com_author }}" class="img img-rounded img-fluid"/>
+                        <img src="{{ comment.get_com_author }}" width="140px" class="img img-rounded img-fluid"/>
                         <p class="text-secondary text-center">{{ comment.publish }}</p>
                     </div>
                     <div class="col-md-10">
@@ -28,7 +28,7 @@
                       </p>
                       <div>
                         
-                        <p>{{ comment.content }}</p>
+                        <p>{{ comment.content }}</p>`
                       </div>
                         
                     </div>

@@ -25,6 +25,8 @@ def announcement_detail_view(request, id=None):
         com.user = request.user
         com.announcement = obj
         com.save()
+        form = CommentForm()
+        context['form'] = form
         return render(request, "form_comments.html", context)
     return render(request, "announcements/detail.html", context)
 
@@ -58,8 +60,7 @@ def announcement_create_view(request,id=None):
 
 @login_required
 def av_form(request, id=None):
-    if not request.htmx:
-        raise Http404
+    
     obj = get_object_or_404(Announcement, id=id, user=request.user)
     form = AnnouncementForm(request.POST or None, instance =obj)
     av_form = AvailabilityForm(request.POST or None)
@@ -69,6 +70,11 @@ def av_form(request, id=None):
         'obj':obj,
         'btn': True
     }
+    if not request.htmx:
+            
+        return redirect(obj.get_update_url())
+
+        raise Http404
     if request.method == "PATCH":
         return redirect(obj) 
     if request.method == "PUT":
@@ -105,16 +111,28 @@ def announcement_update_view(request, id=None):
         'obj':obj,
         'btn': True,
     }
-    if form.is_valid():
-        parent = form.save(commit=False)
-        parent.save()
-        context['message'] = 'data saved.'
+
+    # if request.method == "PUT":
+    #     print(request.POST['form'])
+    #     if form.is_valid():
+    #         obj = form.save(commit=False)
+    #         obj.save()
+    #         context['message'] = 'zapisano'
+        # return render(request, "announcements/create-update.html", context)
     if request.method == "POST":
         if form.is_valid():
             an = form.save(commit=False)
             an.save()
+            # context['av_form'] = av_form
             context['message'] = 'zapisano'
-        return redirect(an.get_hx_av_url())
+            form = AnnouncementForm(request.POST or None, instance = an)
+            return render(request, "announcements/create-update.html", context)
+    # if request.method == "POST":
+    #     if form.is_valid():
+    #         an = form.save(commit=False)
+    #         an.save()
+    #         context['message'] = 'zapisano'
+    #     return redirect(an.get_hx_av_url())
     return render(request, "announcements/create-update.html", context)
 
 @login_required
