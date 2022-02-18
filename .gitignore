@@ -20,6 +20,7 @@ downloads/
 eggs/
 .eggs/
 lib/
+!Lib/site-packages/django/core/files/
 lib64/
 parts/
 sdist/
