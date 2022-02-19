@@ -112,13 +112,12 @@ def announcement_update_view(request, id=None):
         'btn': True,
     }
 
-    # if request.method == "PUT":
-    #     print(request.POST['form'])
-    #     if form.is_valid():
-    #         obj = form.save(commit=False)
-    #         obj.save()
-    #         context['message'] = 'zapisano'
-        # return render(request, "announcements/create-update.html", context)
+    if request.htmx:
+        if form.is_valid():
+            form.save()
+        context['message'] = 'zapisano'
+        return render(request, "announcements/partials/forms.html", context)
+        
     if request.method == "POST":
         if form.is_valid():
             an = form.save(commit=False)

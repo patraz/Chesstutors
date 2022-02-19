@@ -26,6 +26,10 @@
         {% else%}
         <p>Więcej niż 7 dodać nie możesz...</p>
         {% endif %}
+        <div id="btn_div" class="m-4 float-start">
+            <a class='btn btn-warning m-2' href='{% url "announcements:detail" id=obj.id %}'>Przejdź do ogłoszenia</a>
+            <button type='submit' class='m-2 btn btn-primary'>zapisz zmiany</button>
+        </div>
 
     </div>
 

@@ -1,6 +1,6 @@
 {% load crispy_forms_tags %}
 
-<form action="." method="POST" {% if obj is None %} hx-post='.' hx-swap='outerHTML' {% endif %}>
+<form {% if obj is not None %} hx-post='.' hx-swap="outerHTML" hx-target='this'{% else %} method="POST"  action="."{% endif %}>
     {{message}}
     {% csrf_token %}
     {{ form|crispy }}
@@ -12,8 +12,7 @@
         
         </div>
         
-        <a class='btn btn-warning m-2' href='{% url "announcements:detail" id=obj.id %}'>Przejdź do ogłoszenia</a>
-        <button type='submit' class='m-2 btn btn-primary'>zapisz zmiany</button>
+
     {% endif %}
     <hr>
     {% if btn != True %}
