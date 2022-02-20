@@ -2,7 +2,7 @@ TODO.TXT
 workspace.code-workspace
 static/
 live-static/
-
+Lib
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
