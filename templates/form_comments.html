@@ -1,6 +1,7 @@
 {% load crispy_forms_tags %}
 <div id="form_com">
     <div  class="container row">	
+      {% if request.user.is_authenticated %}
         <form  hx-post="{% url 'announcements:detail' id=obj.id %}" hx-target="#form_com" hx-swap="outerHTML" class="text-white mx-auto col-12">
           {% csrf_token %}
           <div class="text-dark">
@@ -9,6 +10,11 @@
             <button class="btn btn-success float-end m-3" type='submit'>Dodaj</button>
           </div>
         </form>
+        {% else %}
+        <div class="col-4 mx-auto">
+          <a href="{% url 'login' %}" class="btn btn-secondary text-white">Zaloguj się żeby dodać komentarz</a>
+        </div>
+        {% endif %}
       </div>
         {% if obj.comments.all %}
         <h1>Komentarze</h1>

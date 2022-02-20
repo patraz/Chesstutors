@@ -6,9 +6,8 @@
       </a>
 
       <ul class="nav nav-pills">
-        
-        {% if request.user.is_authenticated %}
         <li class="nav-item"><a href="{% url 'announcements:list' %}" class="btn bg-success mx-1 text-white">Ogłoszenia</a></li>
+        {% if request.user.is_authenticated %}
         <li class="nav-item"><a href="{% url 'profile' %}" class="btn bg-success mx-1 text-white">Twoje konto</a></li>
         <form action="{% url 'logout' %}" method="POST">
           {% csrf_token %}
