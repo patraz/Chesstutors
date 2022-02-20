@@ -21,7 +21,7 @@ class AnnouncementForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         for field in self.fields:
             new_data = {
-                "placeholder": f'Announcement {str(field)}',
+                
                 "class": 'form-control',
             }
             self.fields[str(field)].widget.attrs.update(

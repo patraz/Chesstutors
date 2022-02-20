@@ -8,7 +8,7 @@
                     x
                   </p>
                   <h6 class="">{{ av.day }} </h6>
-                  <p>od: {{ av.av_from }} do: {{ av.av_to }}</p>
+                  <p>{% if av.av_from != None %} od: {{ av.av_from }} {% endif %}{% if av.av_to != None %} do: {{ av.av_to }}{% endif %}</p>
                   <hr class="bg-success border-2 border-top border-success">
             </div>
             {% endfor %}

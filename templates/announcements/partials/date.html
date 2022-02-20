@@ -2,9 +2,7 @@
 <div id="av_forma">
     <form hx-post='{% url "announcements:hx_av" id=obj.id %}' hx-target='#avs'  hx-swap="outerHTML" >
         {{ av_form|crispy}}
-        {{ av_form.non_field_errors}}  
-                <button class='m-2 btn btn-primary float-end' type="submit">zapisz</button>
+                <button class='m-2 btn btn-info float-end' type="submit">dodaj</button>
         </div>
     </form>
-
 </div>

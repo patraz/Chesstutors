@@ -25,7 +25,9 @@
                     <img src="{% if  author.profile_picture %} {{ author.profile_picture.url}} {% else %} {% static 'default.jpg' %} {% endif %}" alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2" style="width: 150px; z-index: 1">
                     <h4 class="card-title">{{ author.user }}</h4>
                     <h6 class="card-subtitle mb-2 text-muted">Autor ogłoszenia</h6>
+                    {% if author.description != None %}
                     <p class="card-text text-break">{{ author.description }}</p>
+                    {% endif %}
                     <a href="#" class="btn btn-success">umów się na korki</a>
                     <a href="#" class="btn btn-outline-success my-1">napisz wiadomość</a>
             </div>
@@ -42,7 +44,7 @@
         </div>
         <div class="card-body">
             <i class="bi bi-display h1 text-warning"></i>
-            <h5 class="card-title mt-3">Cennik</h5>
+            <h5 class="card-title mt-3">Stawka godzinowa</h5>
             <p class="card-text">
               {{ obj.price }} {{ obj.currency }}
             </p>
@@ -53,7 +55,7 @@
             <p class="card-text">
                 {% for av in obj.avs.all %} 
                   <h6>{{ av.day }} </h6>
-                  <p>od: {{ av.av_from }} do: {{ av.av_to }}</p>
+                  <p>{% if av.av_from != None %} od: {{ av.av_from }} {% endif %}{% if av.av_to != None %} do: {{ av.av_to }}{% endif %}</p>
                 {% endfor %}
             </p>
           </div>
