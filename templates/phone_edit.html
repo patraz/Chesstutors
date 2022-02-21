@@ -1,0 +1,10 @@
+{% load crispy_forms_tags %}
+
+<form class="phone_number_div">
+    {% csrf_token %}
+    {{form}}
+    {% for field in form %}
+        {{ field.errors }}
+    {% endfor %}
+    <p hx-post="{% url 'phone_number' %}" hx-swap='outerHTML' hx-target='.phone_number_div' class="badge badge-pill bg-success my-4" style="cursor: pointer;">zmień</p>
+</form>

@@ -7,7 +7,9 @@ from .views import (
     login_view,
     logout_view,
     edit_description_hx,
-    upload_photo
+    upload_photo,
+    edit_number_hx,
+    show_number
 )
 
 urlpatterns = [
@@ -15,5 +17,7 @@ urlpatterns = [
     path('login/', login_view, name='login'),
     path('signup/', signup, name='signup'),
     path('edit_des', edit_description_hx, name='edit_des'),
-    path('upl_prof', upload_photo, name='upload_photo')
+    path('upl_prof', upload_photo, name='upload_photo'),
+    path('phone_number', edit_number_hx, name='phone_number'),
+    path('show_number/<int:id>', show_number, name='show_number')
 ]

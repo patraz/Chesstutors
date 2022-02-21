@@ -28,8 +28,9 @@
                     {% if author.description != None %}
                     <p class="card-text text-break">{{ author.description }}</p>
                     {% endif %}
-                    <a href="#" class="btn btn-success">umów się na korki</a>
-                    <a href="#" class="btn btn-outline-success my-1">napisz wiadomość</a>
+                    {% if author.phone_number %}
+                    <a hx-swap="outerHTML" hx-get="{% url 'show_number' id=author.id %}" class="btn btn-outline-success btn-sm ">pokaż numer telefonu</a>
+                    {% endif %}
             </div>
     </div>
 

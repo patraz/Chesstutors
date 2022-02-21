@@ -32,10 +32,13 @@
                   <p class="mb-1 h5" x-text="qty"></p>
                   <p class="small text-muted mb-0">ogłoszenia</p>
                 </div>
-                <a  href="{% url 'announcements:create' %}" class="btn btn-outline-dark m-4" >
+                
+                <a  href="{% url 'announcements:create' %}" class="btn btn-outline-dark my-4" >
                     Dodaj ogłoszenie
                 </a>
               </div>
+              {% include 'phone_number.html' %}
+
             </div>
             <div class="card-body p-4 text-black">
               <div class="mb-5">

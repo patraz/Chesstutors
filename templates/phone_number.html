@@ -1,0 +1,8 @@
+<div class="phone_number_div">
+    {% if user.phone_number %}
+    <p class="btn btn-light" >{{user.phone_number}}</p>
+    <p hx-get="{% url 'phone_number' %}" hx-swap="outerHTML" hx-target=".phone_number_div" class="badge badge-pill bg-success my-4" style="cursor: pointer;">zmień</p>
+    {% else %}
+    <p hx-get="{% url 'phone_number' %}" hx-swap="outerHTML" hx-target=".phone_number_div" class="badge badge-pill bg-success my-4" style="cursor: pointer;">Dodaj numer telefonu</p>
+    {% endif %}
+</div>

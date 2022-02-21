@@ -1,9 +1,7 @@
-from doctest import master
-from email.policy import default
+
 from django.contrib.auth.models import User
 from django.db import models
-from imagekit.models import ImageSpecField
-from imagekit.processors import ResizeToFill
+
 
 # Create your models here.
 class Userprofile(models.Model):
@@ -11,3 +9,4 @@ class Userprofile(models.Model):
     active_team_id = models.IntegerField(default=0)
     description = models.TextField(max_length=300, null=True, blank=True)
     profile_picture = models.ImageField( default='default.jpg')
+    phone_number = models.CharField(max_length=15, null=True, blank=True)

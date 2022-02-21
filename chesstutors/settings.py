@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'django_htmx',
     'userprofile',
     'announcements',
-    'crispy_forms'
+    'crispy_forms',
+
 ]
 
 MIDDLEWARE = [
