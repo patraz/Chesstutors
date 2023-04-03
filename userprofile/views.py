@@ -18,7 +18,6 @@ def signup(request):
             user = form.save()
             user.email = user.username
             user.save()
-
             userprofile = Userprofile.objects.create(user=user)
 
             login(request, user)
@@ -84,12 +83,10 @@ def edit_number_hx(request):
 def upload_photo(request):
     user = get_object_or_404(Userprofile, user= request.user)
     form = UserprofilePhoto(request.POST or None)
-    
     context = {
         'form': form,
         'user':user
     }
-
     if request.method == 'POST':
         form = UserprofilePhoto(request.POST or None, request.FILES, instance = user)
         print(form.data)

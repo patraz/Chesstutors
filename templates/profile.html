@@ -15,7 +15,7 @@
             <div class="rounded-top text-white d-flex flex-row" style="background-image: radial-gradient(circle at 19.01% 64.45%, #acbf27 0, #97bd27 12.5%, #7db722 25%, #5bad1a 37.5%, #269f0d 50%, #009005 62.5%, #00850d 75%, #007d1a 87.5%, #007928 100%); height:200px;">
               <div class="ms-4 mt-5 d-flex flex-column" style="width: 150px;">
                 <img src="{% if  user.profile_picture %} {{user.profile_picture.url}} {% else %} {% static 'default.jpg' %} {% endif %}" alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2" style="width: 150px; z-index: 1">
-                <button type="button" class="btn btn-light btn-sm" data-mdb-ripple-color="dark" hx-target="#img_div" style="z-index: 1;" hx-swap="outerHTML" hx-get="{% url 'upload_photo'%}">
+                <button type="button" class="btn btn-dark btn-sm" data-mdb-ripple-color="dark" hx-target="#img_div" style="z-index: 1;" hx-swap="outerHTML" hx-get="{% url 'upload_photo'%}">
                   zmień profilówkę
                 </button>
                 
